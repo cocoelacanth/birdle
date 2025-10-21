@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const glob = require('glob')
 
-const htmlPages = glob.sync(path.resolve(__dirname, 'src/*.html'))
+const htmlPages = glob.sync(path.resolve(__dirname, 'src/*.html').replaceAll(path.sep, path.posix.sep))
 
 module.exports = {
   mode: 'development',
@@ -16,7 +16,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'src'),
+      directory: path.resolve(__dirname, 'src'),
       watch: true
     },
     port: 8080,
